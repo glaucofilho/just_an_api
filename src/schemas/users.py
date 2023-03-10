@@ -24,6 +24,16 @@ class UpdatePassword(BaseModel):
     password: str
 
 
-class ShowUpdatePassword(BaseModel):
+class UpdateSuperuser(BaseModel):
+    username: str
+    is_superuser: bool
+
+
+class UpdateActive(BaseModel):
+    username: str
+    is_active: bool
+
+
+class ShowUpdate(BaseModel):
     status: str
     username: str
