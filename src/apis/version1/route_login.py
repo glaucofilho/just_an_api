@@ -47,7 +47,7 @@ def login_for_access_token(
         )
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
-        data={"sub": user.email}, expires_delta=access_token_expires
+        data={"sub": user.username}, expires_delta=access_token_expires
     )
     response.set_cookie(
         key="access_token", value=f"Bearer {access_token}", httponly=True
@@ -70,7 +70,6 @@ def get_current_user_from_token(
             token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM]
         )
         username: str = payload.get("sub")
-        print("username/email extracted is ", username)
         if username is None:
             raise credentials_exception
     except JWTError:

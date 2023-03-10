@@ -7,6 +7,7 @@ class UserCreate(BaseModel):
     username: str
     email: EmailStr
     password: str
+    is_superuser: bool = False
 
 
 class ShowUser(BaseModel):
@@ -16,3 +17,13 @@ class ShowUser(BaseModel):
 
     class Config:  # to convert non dict obj to json
         orm_mode = True
+
+
+class UpdatePassword(BaseModel):
+    username: str
+    password: str
+
+
+class ShowUpdatePassword(BaseModel):
+    status: str
+    username: str
