@@ -1,5 +1,6 @@
 from core.hashing import Hasher
 from db.models.users import User
+from schemas.users import DeleteUser
 from schemas.users import UpdateActive
 from schemas.users import UpdatePassword
 from schemas.users import UpdateSuperuser
@@ -41,5 +42,11 @@ def update_superuser(user: UpdateSuperuser, db: Session):
     db.query(User).filter(User.username == user.username).update(
         {User.is_superuser: user.is_superuser}
     )
+    db.commit()
+    return {"status": "Sucess", "username": user.username}
+
+
+def delete_username(user: DeleteUser, db: Session):
+    db.query(User).filter(User.username == user.username).delete()
     db.commit()
     return {"status": "Sucess", "username": user.username}

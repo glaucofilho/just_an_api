@@ -34,6 +34,10 @@ class UpdateActive(BaseModel):
     is_active: bool
 
 
+class DeleteUser(BaseModel):
+    username: str
+
+
 class ShowUpdate(BaseModel):
     status: str
     username: str

@@ -17,7 +17,11 @@ def create_tables():
 
 
 def start_application():
-    app = FastAPI(title=settings.PROJECT_NAME, version=settings.PROJECT_VERSION)
+    app = FastAPI(
+        title=settings.PROJECT_NAME,
+        version=settings.PROJECT_VERSION,
+        swagger_ui_parameters={"defaultModelsExpandDepth": -1},
+    )
     include_router(app)
     create_tables()
     create_super_user(settings.ADMIN_USER, settings.ADMIN_PASS, settings.ADMIN_EMAIL)
